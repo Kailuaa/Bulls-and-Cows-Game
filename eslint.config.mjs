@@ -11,5 +11,11 @@ export default defineConfig([
 			tseslint.configs.recommended, 
 		],
 	},
+	{
+        files: ['**/*.test.ts', '**/*.spec.ts'],
+        rules: {
+            '@typescript-eslint/no-unused-expressions': 'off',
+        },
+    },
 	eslintConfigPrettier,
 ]);
