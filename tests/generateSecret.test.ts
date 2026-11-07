@@ -24,9 +24,9 @@ describe('generateSecret', () => {
       expect(secret).toMatch(/^[01]{2}$/);
     }),
     it('should allow zero as the first digit', () => {
-      const secret = generateSecret(4, 10, () => 0);
+      const secret = generateSecret(4, 10, () => 0.99);
 
-      expect(secret[0]).toBe(0);
+      expect(secret[0]).toBe('0');
     }),
     it('should generate hexadecimal digits in lowerCase', () => {
       const secret = generateSecret(4, 10, () => 0);
