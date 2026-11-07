@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createDigitValidator } from '../src/createDigitValidator';
+import { createDigitValidator } from '../src/logic/createDigitValidator';
 
 describe('createDigitValidator', () => {
   (it('should return a functions', () => {
@@ -10,10 +10,10 @@ describe('createDigitValidator', () => {
     it('should validate binary digits 0-1', () => {
       const validator = createDigitValidator(2);
 
-      (expect(validator('0')).toBe(true),
-        expect(validator('1')).toBe(true),
-        expect(validator('2')).toBe(false),
-        expect(validator('A')).toBe(false));
+      expect(validator('0')).toBe(true);
+      expect(validator('1')).toBe(true);
+      expect(validator('2')).toBe(false);
+      expect(validator('A')).toBe(false);
     }),
     it('should validate octal digits 0-7', () => {
       const validator = createDigitValidator(8);
