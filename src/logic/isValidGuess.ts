@@ -1,6 +1,3 @@
-// isValidGuess(guess, length, base) — проверяет: длина совпадает, все символы —
-// допустимые цифры для base, цифры не повторяются.
-
 import { createDigitValidator } from '../logic/createDigitValidator';
 
 export const isValidGuess = (guess: string, length: number, base: number): boolean => {
@@ -14,7 +11,3 @@ export const isValidGuess = (guess: string, length: number, base: number): boole
 
   return isValid && isUnique;
 };
-
-// длина
-// символы
-// повторение
