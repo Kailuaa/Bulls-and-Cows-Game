@@ -5,10 +5,10 @@
 // (a и A — одна и та же цифра): приводите символ к нижнему регистру (toLowerCase)
 // перед сравнением везде, где сравниваются цифры — в валидаторе, в evaluateGuess, при сверке с секретом.
 
-const digits = '0123456789abcdef';
+import { DIGITS } from '../logic/constants/constants';
 
 export const createDigitValidator = (base: number) => {
-  const allowedDigits = digits.slice(0, base);
+  const allowedDigits = DIGITS.slice(0, base);
 
   return (char: string): boolean => {
     return allowedDigits.includes(char.toLowerCase());

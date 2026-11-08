@@ -6,14 +6,14 @@
 //     тестируемой чистой функцией: в тестах вы передаёте детерминированный random,
 //     и результат становится предсказуемым.
 
-const digits = '0123456789abcdef';
+import { DIGITS } from '../logic/constants/constants';
 
 export const generateSecret = (
   length: number,
   base: number,
   random: () => number = Math.random
 ): string => {
-  const shuffled = [...digits].slice(0, base);
+  const shuffled = [...DIGITS].slice(0, base);
 
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));
