@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
-    "build": "tsc"
+    "build": "tsc && cp index.html dist/index.html"
   },
   "lint-staged": {
     "*.{ts,js}": [
