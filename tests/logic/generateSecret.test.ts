@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { generateSecret } from '../src/logic/generateSecret';
+import { generateSecret } from '../../src/logic/generateSecret';
 
 describe('generateSecret', () => {
   (it('should return a string', () => {

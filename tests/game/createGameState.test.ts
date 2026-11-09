@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createGameState } from '../../src/game/gameState';
+import { createGameState } from '../../src/game/createGameState';
 
 describe('createGameState', () => {
   const settings = {

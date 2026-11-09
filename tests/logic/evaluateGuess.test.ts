@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { evaluateGuess } from '../src/logic/evaluateGuess';
+import { evaluateGuess } from '../../src/logic/evaluateGuess';
 
 describe('evaluateGuess', () => {
   (it('should return 4 bulls and 0 cows for an exact match', () => {

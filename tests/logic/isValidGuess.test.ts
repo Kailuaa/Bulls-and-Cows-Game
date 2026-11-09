@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isValidGuess } from '../src/logic/isValidGuess';
+import { isValidGuess } from '../../src/logic/isValidGuess';
 
 describe('isValidGuess', () => {
   (it('should return true for a valid decimal guess', () => {

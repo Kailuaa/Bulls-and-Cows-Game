@@ -21,6 +21,6 @@
     "noEmitOnError": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests/game", "tests/logic"],
   "exclude": ["node_modules", "dist", "tests"]
 }

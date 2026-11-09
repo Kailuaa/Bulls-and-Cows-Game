@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { countPossibleSecrets } from '../src/logic/countPossibleSecrets';
+import { countPossibleSecrets } from '../../src/logic/countPossibleSecrets';
 
 describe('countPossibleSecrets', () => {
   (it('should return a number', () => {

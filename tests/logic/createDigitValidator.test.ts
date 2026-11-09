@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createDigitValidator } from '../src/logic/createDigitValidator';
+import { createDigitValidator } from '../../src/logic/createDigitValidator';
 
 describe('createDigitValidator', () => {
   (it('should return a functions', () => {
