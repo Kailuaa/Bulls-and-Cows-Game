@@ -77,7 +77,7 @@ describe('submitState', () => {
       submitState(state, '1234', endTime);
 
       expect(state.status).toEqual('playing');
-      expect(state.history).toBe([]);
+      expect(state.history).toEqual([]);
       expect(state.endTime).toBeNull();
     }));
 });
