@@ -1,5 +1,5 @@
-import type { GameSettings } from '../types/index';
-import { countPossibleSecrets } from '../logic/countPossibleSecrets';
+import type { GameSettings } from '../types/index.js';
+import { countPossibleSecrets } from '../logic/countPossibleSecrets.js';
 
 const BASES = [
   { label: 'Binary (2)', value: 2 },
@@ -36,7 +36,7 @@ export const renderSettings = (container: HTMLElement): void => {
   const lengthSelect = document.createElement('select');
   lengthSelect.id = 'length-select';
 
-  for (let length = 2; length < 6; length++) {
+  for (let length = 2; length <= 6; length++) {
     const option = document.createElement('option');
     option.value = String(length);
     option.textContent = String(length);
@@ -82,7 +82,7 @@ export const renderSettings = (container: HTMLElement): void => {
     };
 
     container.dispatchEvent(
-      new CustomEvent<GameSettings>('game-start', {
+      new CustomEvent<GameSettings>('start-game', {
         detail: settings
       })
     );

@@ -1,4 +1,4 @@
-import { DIGITS } from '../logic/constants/constants';
+import { DIGITS } from '../logic/constants/constants.js';
 
 export const createDigitValidator = (base: number) => {
   const allowedDigits = DIGITS.slice(0, base);

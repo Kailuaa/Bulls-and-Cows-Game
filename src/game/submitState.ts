@@ -1,8 +1,8 @@
-import type { GameState } from '../types/index';
-import { addGuess } from '../game/addGuess';
-import { finishGame } from '../game/finishGame';
-import { isValidGuess } from '../logic/isValidGuess';
-import { evaluateGuess } from '../logic/evaluateGuess';
+import type { GameState } from '../types/index.js';
+import { addGuess } from '../game/addGuess.js';
+import { finishGame } from '../game/finishGame.js';
+import { isValidGuess } from '../logic/isValidGuess.js';
+import { evaluateGuess } from '../logic/evaluateGuess.js';
 
 export const submitState = (
   state: GameState,

@@ -1,4 +1,4 @@
-import { createDigitValidator } from '../logic/createDigitValidator';
+import { createDigitValidator } from '../logic/createDigitValidator.js';
 
 export const isValidGuess = (guess: string, length: number, base: number): boolean => {
   if (guess.length !== length) return false;

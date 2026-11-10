@@ -1,5 +1,5 @@
-import { generateSecret } from '../logic/generateSecret';
-import type { GameSettings, GameState } from '../types/index';
+import { generateSecret } from '../logic/generateSecret.js';
+import type { GameSettings, GameState } from '../types/index.js';
 
 export const createGameState = (
   settings: GameSettings,
@@ -15,47 +15,3 @@ export const createGameState = (
     endTime: null
   };
 };
-
-// Пользователь
-//      |
-//      v
-// Выбирает настройки
-//      |
-//      v
-// Нажимает START
-//      |
-//      v
-// createGameState()
-//      |
-//      +---- generateSecret()
-//      |
-//      v
-// Состояние игры создано
-//      |
-//      v
-// Пользователь вводит попытку
-//      |
-//      v
-// Проверка isValidGuess()
-//      |
-//      v
-// evaluateGuess()
-//      |
-//      v
-// addGuess()
-//      |
-//      v
-// Проверка победы
-//      |
-//      +---- Нет ---> Новая попытка
-//      |
-//      +---- Да
-//              |
-//              v
-//         Завершение игры
-//              |
-//              v
-//         Сохранение результата
-//              |
-//              v
-//         Таблица рекордов
