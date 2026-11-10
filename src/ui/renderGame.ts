@@ -11,13 +11,23 @@ export const renderGame = (
   const section = document.createElement('section');
   section.className = 'game';
 
+  const header = document.createElement('div');
+  header.className = 'game-header';
+
   const title = document.createElement('h2');
   title.textContent = 'Bulls & Cows';
 
   const settings = document.createElement('p');
+  settings.className = 'game-settings';
   settings.textContent = `Base: ${state.base} | Length: ${state.length}`;
 
+  header.append(title, settings);
+
+  const gameInfo = document.createElement('div');
+  gameInfo.className = 'game-info';
+
   const timer = document.createElement('p');
+  timer.className = 'info-item';
   timer.id = 'game-timer';
 
   const updateTimer = (): void => {
@@ -33,8 +43,11 @@ export const renderGame = (
   const timerInterval = window.setInterval(updateTimer, 1000);
 
   const attempts = document.createElement('p');
+  attempts.className = 'info-item';
   attempts.id = 'attempts';
   attempts.textContent = `Attempts: ${state.history.length}`;
+
+  gameInfo.append(timer, attempts);
 
   const input = document.createElement('input');
   input.type = 'text';
@@ -77,7 +90,7 @@ export const renderGame = (
     onNewGame();
   });
 
-  section.append(title, settings, timer, attempts, input, guessButton, history, newGameButton);
+  section.append(header, gameInfo, input, guessButton, history, newGameButton);
 
   container.replaceChildren(section);
 

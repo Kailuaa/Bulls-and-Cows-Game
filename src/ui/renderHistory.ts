@@ -11,22 +11,31 @@ export const renderHistory = (container: HTMLElement, history: GuessResult[]): v
 
   if (history.length === 0) {
     const emptyMessage = document.createElement('p');
+    emptyMessage.className = 'empty-history';
     emptyMessage.textContent = 'No guesses yet';
 
     section.append(emptyMessage);
   } else {
     const list = document.createElement('ul');
+    list.className = 'history-list';
 
-    [...history].reverse().forEach(({ guess, bulls, cows }) => {
+    [...history].reverse().forEach(({ guess, bulls, cows }, index) => {
       const item = document.createElement('li');
+      item.className = 'history-item';
+
+      const number = document.createElement('span');
+      number.className = 'history-number';
+      number.textContent = `#${history.length - index}`;
 
       const guessElement = document.createElement('span');
-      item.textContent = guess;
+      guessElement.className = 'history-guess';
+      guessElement.textContent = guess;
 
       const resultElement = document.createElement('span');
-      resultElement.textContent = `Bulls: ${bulls}, Cows: ${cows}`;
+      resultElement.className = 'history-result';
+      resultElement.textContent = `${bulls} bulls | ${cows} cows`;
 
-      item.append(guessElement, resultElement);
+      item.append(number, guessElement, resultElement);
       list.append(item);
     });
     section.append(list);

@@ -15,70 +15,109 @@ export const renderSettings = (container: HTMLElement): void => {
   const title = document.createElement('h1');
   title.textContent = 'Bulls & Cows';
 
-  const baseLabel = document.createElement('label');
+  const subtitle = document.createElement('p');
+  subtitle.className = 'settings-subtitle';
+  subtitle.textContent = 'Guess the secret number';
+
+  const baseGroup = document.createElement('div');
+  baseGroup.className = 'settings-group';
+
+  const baseLabel = document.createElement('h2');
   baseLabel.textContent = 'Number system';
 
-  const baseSelect = document.createElement('select');
-  baseSelect.id = 'base-select';
+  const baseOptions = document.createElement('div');
+  baseOptions.className = 'options';
 
-  BASES.forEach(({ label, value }) => {
-    const option = document.createElement('option');
-    option.value = String(value);
-    option.textContent = label;
-    baseSelect.append(option);
-  });
+  let selectedBase = 10;
 
-  baseLabel.append(baseSelect);
+  const lengthGroup = document.createElement('div');
+  lengthGroup.className = 'settings-group';
 
-  const lengthLabel = document.createElement('label');
+  const lengthLabel = document.createElement('h2');
   lengthLabel.textContent = 'Number length';
 
-  const lengthSelect = document.createElement('select');
-  lengthSelect.id = 'length-select';
+  const lengthOptions = document.createElement('div');
+  lengthOptions.className = 'options';
 
-  for (let length = 2; length <= 6; length++) {
-    const option = document.createElement('option');
-    option.value = String(length);
-    option.textContent = String(length);
-    lengthSelect.append(option);
-  }
-
-  lengthLabel.append(lengthSelect);
+  let selectedLength = 4;
 
   const combinations = document.createElement('p');
   combinations.id = 'combinations';
+  combinations.className = 'combinations';
 
   const startButton = document.createElement('button');
   startButton.id = 'start-button';
-  startButton.textContent = 'START';
+  startButton.className = 'primary-button';
+  startButton.textContent = 'START GAME';
 
   const updateSettings = (): void => {
-    const base = Number(baseSelect.value);
-    const length = Number(lengthSelect.value);
-
-    Array.from(lengthSelect.options).forEach(
-      (option) => (option.disabled = Number(option.value) > base)
-    );
-
-    if (length > base) {
-      lengthSelect.value = '2';
-    }
-
-    const settings: GameSettings = {
-      base,
-      length: Number(lengthSelect.value)
-    };
-
-    combinations.textContent = `Possible combinations: ${countPossibleSecrets(settings.length, settings.base)}`;
+    combinations.textContent = `${countPossibleSecrets(selectedLength, selectedBase).toLocaleString()} possible combinations`;
   };
 
-  baseSelect.addEventListener('change', updateSettings);
-  lengthSelect.addEventListener('change', updateSettings);
+  const updateLengthOptions = (): void => {
+    Array.from(lengthOptions.children).forEach((child) => {
+      const button = child as HTMLButtonElement;
+      const length = Number(button.dataset.length);
+
+      button.disabled = length > selectedBase;
+      button.classList.toggle('selected', length === selectedLength);
+      button.setAttribute('aria-pressed', String(length === selectedLength));
+    });
+  };
+
+  BASES.forEach(({ label, value }) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'option-button';
+    button.textContent = label;
+    button.dataset.base = String(value);
+    button.setAttribute('aria-pressed', String(value === selectedBase));
+    button.classList.toggle('selected', value === selectedBase);
+
+    button.addEventListener('click', () => {
+      selectedBase = value;
+
+      if (selectedLength > selectedBase) {
+        selectedLength = 2;
+      }
+
+      Array.from(baseOptions.children).forEach((child) => {
+        const option = child as HTMLButtonElement;
+        const isSelected = Number(option.dataset.base) === selectedBase;
+
+        option.classList.toggle('selected', isSelected);
+        option.setAttribute('aria-pressed', String(isSelected));
+      });
+
+      updateLengthOptions();
+      updateSettings();
+    });
+
+    baseOptions.append(button);
+  });
+
+  for (let length = 2; length <= 6; length++) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'option-button';
+    button.textContent = String(length);
+    button.dataset.length = String(length);
+
+    button.addEventListener('click', () => {
+      if (length > selectedBase) return;
+      selectedLength = length;
+
+      updateLengthOptions();
+      updateSettings();
+    });
+
+    lengthOptions.append(button);
+  }
 
   startButton.addEventListener('click', () => {
     const settings: GameSettings = {
-      base: Number(baseSelect.value),
-      length: Number(lengthSelect.value)
+      base: selectedBase,
+      length: selectedLength
     };
 
     container.dispatchEvent(
@@ -88,9 +127,14 @@ export const renderSettings = (container: HTMLElement): void => {
     );
   });
 
-  section.append(title, baseLabel, lengthLabel, combinations, startButton);
+  baseGroup.append(baseLabel, baseOptions);
+
+  lengthGroup.append(lengthLabel, lengthOptions);
+
+  section.append(title, subtitle, baseGroup, lengthGroup, combinations, startButton);
 
   container.replaceChildren(section);
 
+  updateLengthOptions();
   updateSettings();
 };
