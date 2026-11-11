@@ -1,0 +1,47 @@
+{
+  "name": "bulls-and-cows-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc && cp index.html dist/index.html && cp style.css dist/style.css"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,html,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kailuaa/Bulls-and-Cows-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Kailuaa/Bulls-and-Cows-Game/issues"
+  },
+  "homepage": "https://github.com/Kailuaa/Bulls-and-Cows-Game#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "3.9.10",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0"
+  }
+}
